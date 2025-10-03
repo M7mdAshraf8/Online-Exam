@@ -1,0 +1,215 @@
+   * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: #0a0a14;
+            overflow: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(60deg, #ff00a0, #00eaff, #ff00a0, #00eaff);
+            background-size: 400%;
+            animation: neonFlow 15s linear infinite;
+            opacity: 0.25;
+            z-index: -2;
+        }
+
+        @keyframes neonFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 400% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .particles::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800"%3E%3Ccircle fill="rgba(255,255,255,0.15)" cx="120" cy="120" r="4"/%3E%3Ccircle fill="rgba(0,234,255,0.2)" cx="680" cy="180" r="5"/%3E%3Ccircle fill="rgba(255,0,160,0.2)" cx="320" cy="620" r="3"/%3E%3Ccircle fill="rgba(255,255,255,0.15)" cx="480" cy="380" r="4"/%3E%3C/svg%3E');
+            animation: floatParticles 25s linear infinite;
+        }
+
+        @keyframes floatParticles {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-120px, -120px); }
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px #00eaff, 0 0 20px #ff00a0;
+            margin-bottom: 2rem;
+            animation: glowText 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glowText {
+            0% { text-shadow: 0 0 10px #00eaff, 0 0 20px #ff00a0; }
+            100% { text-shadow: 0 0 20px #00eaff, 0 0 30px #ff00a0; }
+        }
+
+        .form {
+            background: rgba(20, 20, 30, 0.85);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 0 40px rgba(0, 234, 255, 0.3), 0 0 80px rgba(255, 0, 160, 0.2);
+            max-width: 500px;
+            width: 100%;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transform: perspective(1000px) rotateX(3deg);
+            animation: floatForm 5s ease-in-out infinite;
+        }
+
+        @keyframes floatForm {
+            0%, 100% { transform: perspective(1000px) rotateX(3deg) translateY(0); }
+            50% { transform: perspective(1000px) rotateX(3deg) translateY(-15px); }
+        }
+
+        .form:hover {
+            transform: perspective(1000px) rotateX(0deg);
+        }
+
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+        }
+
+        .form-group {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            color: #fff;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 5px rgba(0, 234, 255, 0.5);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+            transition: box-shadow 0.3s ease, background 0.3s ease;
+            box-shadow: 0 0 10px rgba(0, 234, 255, 0.2);
+        }
+
+        .form-control:focus {
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 15px rgba(0, 234, 255, 0.5), 0 0 25px rgba(255, 0, 160, 0.3);
+        }
+
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .error-message {
+            color: #ff4d4d;
+            font-size: 0.9rem;
+            min-height: 1rem;
+            margin-top: 0.4rem;
+            text-shadow: 0 0 5px rgba(255, 0, 160, 0.5);
+        }
+
+        .form-group.passicon {
+            position: relative;
+        }
+
+        .showPass, .showCPass {
+            position: absolute;
+            right: 15px;
+            top: 65%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.3rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .showPass:hover, .showCPass:hover {
+            color: #00eaff;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .form-group.sent input[type="submit"] {
+            width: 100%;
+            padding: 1.2rem;
+            margin-top:2rem ;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            background: linear-gradient(90deg, #ff00a0, #00eaff);
+            color: #fff;
+            box-shadow: 0 0 20px rgba(0, 234, 255, 0.5);
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+        }
+
+        .form-group.sent input[type="submit"]:hover {
+            box-shadow: 0 0 30px rgba(255, 0, 160, 0.7);
+            transform: translateY(-3px);
+        }
+
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .form {
+                padding: 2rem;
+                margin: 1rem;
+                transform: perspective(1000px) rotateX(0deg);
+            }
+
+            .form-control {
+                padding: 0.9rem;
+                font-size: 0.95rem;
+            }
+
+            .form-group.sent input[type="submit"] {
+                padding: 1rem;
+                font-size: 1.1rem;
+            }
+
+            .showPass, .showCPass {
+                font-size: 1.2rem;
+            }
+        }
